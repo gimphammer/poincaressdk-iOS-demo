@@ -1,0 +1,6 @@
+framework module PoincaresSdk {
+  umbrella header "PoincaresSdk.h"
+  export *
+
+  module * { export * }
+}

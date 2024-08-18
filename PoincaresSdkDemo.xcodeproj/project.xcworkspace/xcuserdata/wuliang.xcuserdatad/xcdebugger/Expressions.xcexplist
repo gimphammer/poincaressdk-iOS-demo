@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "hpcsdk::NDSession::AddNDTaskFromDispatchResponse(hpcsdk::DispatchServerResponse&amp;):nd_session.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "data">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::ParseValueForOneData(nlohmann::json_abi_v3_11_3::basic_json&lt;std::__1::map, std::__1::vector, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;, bool, long long, unsigned long long, double, std::__1::allocator, nlohmann::json_abi_v3_11_3::adl_serializer, std::__1::vector&lt;unsigned char, std::__1::allocator&lt;unsigned char&gt;&gt;, void&gt; const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::basic_ostringstream&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;&amp;):utils.cc">
+      </ContextState>
+      <ContextState
+         contextName = "-[OCHttpsProber URLSession:task:didFinishCollectingMetrics:]:nd_task_https_darwin.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "transaction.domainLookupEndDate ">
+            </PersistentString>
+            <PersistentString
+               value = "[transaction.domainLookupEndDate timeIntervalSinceDate:transaction.domainLookupStartDate]">
+            </PersistentString>
+            <PersistentString
+               value = "transaction.domainLookupStartDate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::NDDataReporter::OnResult(hpcsdk::NDTaskResultBase const&amp;)::$_1::operator()(bool&amp;) const:nd_data_reporter.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "result_copy">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::Utils::ParseResponseFromTaskDispatchServer(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, hpcsdk::DispatchServerResponse&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;&amp;):utils.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "jRoot[kRootData]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OCHttpsProber probeURL:reuseConnection:]:nd_task_https_darwin.mm">
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::Https::Run():nd_task_https_darwin.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "impl_-&gt;probe_.probingResult">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::TCPPing::TCPPing(std::__1::unique_ptr&lt;hpcsdk::NDTaskDescriptionTcpPing, std::__1::default_delete&lt;hpcsdk::NDTaskDescriptionTcpPing&gt;&gt;, hpcsdk::NDTaskOwner):nd_task_tcp_ping.cc">
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::Utils::ParseMethodParamBase(nlohmann::json_abi_v3_11_3::basic_json&lt;std::__1::map, std::__1::vector, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;, bool, long long, unsigned long long, double, std::__1::allocator, nlohmann::json_abi_v3_11_3::adl_serializer, std::__1::vector&lt;unsigned char, std::__1::allocator&lt;unsigned char&gt;&gt;, void&gt; const&amp;, hpcsdk::MethodParam*):utils.cc">
+      </ContextState>
+      <ContextState
+         contextName = "hpcsdk::NDSession::RequestNDTaskConfig()::&apos;lambda&apos;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)::operator()(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;) const::&apos;lambda&apos;(bool&amp;)::operator()(bool&amp;) const:nd_session.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "ndtask_dispatch_jstr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
