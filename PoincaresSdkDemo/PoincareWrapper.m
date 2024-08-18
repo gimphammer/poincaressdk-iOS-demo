@@ -15,8 +15,8 @@
 
 
 #pragma mark - Global variable and misc definiton
-NSString* gAppKey=@"CEF45F9B326F6CD9";
-NSString* gAppSecret=@"7C87B057345324F6FED50EFE7599948D";
+NSString* gAppKey=@"to apply on www.poincares.com";
+NSString* gAppSecret=@"to apply on www.poincares.com";
 NSString* gSchedulingServerUrl=@"http://8.149.142.50:81/config/center/info";
 
 NSString* gAppName = @"PoincarsSDKDemo_iOS";
