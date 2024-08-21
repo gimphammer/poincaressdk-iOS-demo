@@ -41,7 +41,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		27A3D5D12C41212500EBDC25 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
@@ -73,6 +73,14 @@
 		27A3D5B82C41117400EBDC25 /* PoincaresSdkDemoUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoincaresSdkDemoUITestsLaunchTests.m; sourceTree = "<group>"; };
 		27A3D71F2C4214DD00EBDC25 /* PoincareWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoincareWrapper.h; sourceTree = "<group>"; };
 		27A3D7202C4214DD00EBDC25 /* PoincareWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoincareWrapper.m; sourceTree = "<group>"; };
+		27D2D2B92C75CABD0002D8A6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		27D2D2BB2C75CACA0002D8A6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		27D2D2BD2C75CAD60002D8A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27D2D2BF2C75CAE90002D8A6 /* libcompression.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcompression.tbd; path = usr/lib/libcompression.tbd; sourceTree = SDKROOT; };
+		27D2D2C12C75CAFF0002D8A6 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		27D2D2C32C75CB0D0002D8A6 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		27D2D2C52C75CB150002D8A6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		27D2D2C72C75CB250002D8A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +179,14 @@
 		27A3D5CE2C41212500EBDC25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27D2D2C72C75CB250002D8A6 /* UIKit.framework */,
+				27D2D2C52C75CB150002D8A6 /* SystemConfiguration.framework */,
+				27D2D2C32C75CB0D0002D8A6 /* Network.framework */,
+				27D2D2C12C75CAFF0002D8A6 /* libresolv.tbd */,
+				27D2D2BF2C75CAE90002D8A6 /* libcompression.tbd */,
+				27D2D2BD2C75CAD60002D8A6 /* Foundation.framework */,
+				27D2D2BB2C75CACA0002D8A6 /* CoreTelephony.framework */,
+				27D2D2B92C75CABD0002D8A6 /* AdSupport.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

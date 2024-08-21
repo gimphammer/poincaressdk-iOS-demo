@@ -232,6 +232,9 @@ static const int kCyclicTaskMode = -1;
  * to identify the taskVersion you wanna add
  */
 @property(assign, nonatomic)    uint32_t   taskVersion;
+/*! To clone a new instance of PoincaresOperationResult */
+- (instancetype)clone;
+
 @end
 
 

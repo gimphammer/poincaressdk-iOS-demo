@@ -15,13 +15,14 @@
 
 
 #pragma mark - Global variable and misc definiton
-NSString* gAppKey=@"to apply on www.poincares.com";
+NSString* gAppKey   =@"to apply on www.poincares.com";
 NSString* gAppSecret=@"to apply on www.poincares.com";
+
 NSString* gSchedulingServerUrl=@"https://account-dev.poincares.com/config/center/info";
 
 NSString* gAppName = @"PoincarsSDKDemo_iOS";
-NSString* gAppVersion = @"0.99.0";
-NSString* gAppId = @"PoincarsSDKDemo_iOS_default_id";
+NSString* gAppVersion = @"1.0.0";
+NSString* gAppId   = @"PoincarsSDKDemo_iOS_default_id";
 NSString* gAppVersionCode = @"PoincarsSDKDemo_iOS_versionCode_none";
 
 NSString* gLogPrefix=@"[PoincaresSdkDemo]";
@@ -199,7 +200,25 @@ NSString* gLogPrefix=@"[PoincaresSdkDemo]";
 
 
 - (void)OnOperationEnd : (PoincaresOperationResult*) result {
-  NSLog(@"%@ OnOperationEnd: opType(%@), errCode(0x%x), extraMsg(\"%@\"), taskType(%@), taskId(%lld), taskVersion(%d)", gLogPrefix, [self OpType2String:result.opType], result.errCode, result.extraMsg, [self TaskType2String:result.taskType], result.taskId, result.taskVersion);
+  
+  if (result) {
+    __block PoincaresOperationResult* resultCloned = [result clone];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 在主线程上处理数据并输出log
+      NSMutableString *opInfo = [[NSMutableString alloc] init];
+      [opInfo appendFormat: @"%@ OnOperationEnd: opType(%@), errCode(0x%x), extraMsg(\"%@\")",
+       gLogPrefix, [self OpType2String:resultCloned.opType], resultCloned.errCode,resultCloned.extraMsg ];
+      
+      if (OTTaskAdding == resultCloned.opType) {
+        [opInfo appendFormat: @", taskType(%@), taskId(%lld), taskVersion(%d) ",
+         [self TaskType2String:resultCloned.taskType], resultCloned.taskId, resultCloned.taskVersion];
+      }
+
+      NSLog(@"%@", opInfo);
+    });
+    
+  }  
 }
 
 
