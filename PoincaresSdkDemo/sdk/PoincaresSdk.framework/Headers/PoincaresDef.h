@@ -109,30 +109,54 @@ static const int kCyclicTaskMode = -1;
 /*!
  * Method to create instances of PoincaresTaskDescPing
  */
-+ (PoincaresTaskDescPing *)createPingTaskWithId:(uint64_t)taskId
-                                        version:(uint32_t)taskVersion
-                                           host:(NSString *)taskHost
-                                       interval:(int32_t)taskInterval
-                                         rounds:(uint32_t)taskRounds
-                                     packetSize:(uint32_t)taskPacketSize
-                                    packetCount:(uint32_t)taskPacketCount
-                                      perTimeOut:(int64_t)taskPerTimeOut
-                                     perInterval:(int64_t)taskPerInterval;
++ (PoincaresTaskDescPing *)createPingTaskWithId:(uint64_t) taskId
+                                        version:(uint32_t) taskVersion
+                                           host:(NSString*)taskHost
+                                       interval:(int32_t)  taskInterval
+                                         rounds:(uint32_t) taskRounds
+                                     packetSize:(uint32_t) taskPacketSize
+                                    packetCount:(uint32_t) taskPacketCount
+                                      perTimeOut:(int64_t) taskPerTimeOut
+                                     perInterval:(int64_t) taskPerInterval;
 
 /*!
  * Method to create instances of PoincaresTaskDescHttp
  */
 + (PoincaresTaskDescHttp*)createHttpTaskWithId:(uint64_t)taskId
-                                      version:(uint32_t)taskVersion
+                                      version:(uint32_t) taskVersion
                                          host:(NSString*)taskHost
-                                     interval:(int32_t)taskInterval
-                                       rounds:(uint32_t)taskRounds
+                                     interval:(int32_t)  taskInterval
+                                       rounds:(uint32_t) taskRounds
                                          link:(NSString*)taskLink
-                                         port:(uint16_t)taskPort
-                                 protoVersion:(uint16_t)taskProtocolVersion
-                                      timeout:(int64_t)perTimeout
-                                  perInterval:(int64_t)perInterval;
+                                         port:(uint16_t) taskPort
+                                 protoVersion:(uint16_t) taskProtocolVersion
+                                      timeout:(int64_t)  perTimeout;
 
+/*!
+ * Method to create instances of PoincaresTaskDescTcpPing
+ */
++ (PoincaresTaskDescTcpPing*)createTcpPingTaskWithId:(uint64_t) taskId
+                                             version:(uint32_t) taskVersion
+                                                host:(NSString*)taskHost
+                                            interval:(int32_t)  taskInterval
+                                              rounds:(uint32_t) taskRounds
+                                                port:(uint16_t) taskPort
+                                        connectCount:(uint32_t) taskConnectCount
+                                          perTimeout:(int64_t)  taskPerTimeout
+                                         perInterval:(int64_t)  taskPerInterval;
+
+/*!
+ * Method to create instances of PoincaresTaskDescMtr
+ */
++ (PoincaresTaskDescMtr*)createMtrTaskWithId:(uint64_t) taskId
+                                     version:(uint32_t) taskVersion
+                                        host:(NSString*)taskHost
+                                    interval:(int32_t)  taskInterval
+                                      rounds:(uint32_t) taskRounds
+                                  packetSize:(uint32_t) taskPktSize
+                                 packetCount:(uint32_t) taskPktCnt
+                                  perTimeout:(int64_t)  taskPerTimeout
+                                 perInterval:(int64_t)  taskPerInterval;
 @end
 
 
@@ -158,18 +182,18 @@ static const int kCyclicTaskMode = -1;
  * @brief it's the description for http task
  */
 @interface PoincaresTaskDescHttp : PoincaresTaskDescBase
-/*! The link means the complete url you wanna detect */
+/*! The link means the complete url you wanna detect, it should base on the host */
 @property(readwrite, nonatomic)  NSString* link;
 /*! The port of the target website */
 @property(assign, nonatomic)  uint16_t port;
 /*! The version of the protocol.
- * 1 means http, 2 means http 2. It's reserved 
+ * 1 means http, 2 means http 2. It's reserved, is not used now.
  */
 @property(assign, nonatomic)  uint16_t protocolVersion;
-/*! The time out for per-packet, base on millisecond */  
+/*! The timeout, base on millisecond */
 @property(assign, nonatomic)  int64_t  perTimeout;
-/*! The interval for per-packet, base on millisecond */
-@property(assign, nonatomic)  int64_t  perInterval;
+
+//@property(assign, nonatomic)  int64_t  perInterval; //no need to open this parmeter
 @end
 
 
@@ -179,10 +203,10 @@ static const int kCyclicTaskMode = -1;
 @interface PoincaresTaskDescTcpPing : PoincaresTaskDescBase
 /*! The tcp port of the target host */
 @property(assign, nonatomic)  uint16_t port;
-/*! How many packets to be send for one round of tcp ping task 
- *  The statistics is related to the packet numbers.
+/*! If connectCount = 10, it means taking 10 measurements on tcp connection for one round
+ *  Then final result for one round task is based on 10 connections statistics data.
  */
-@property(assign, nonatomic)  uint32_t packetNum;
+@property(assign, nonatomic)  uint32_t connectCount;//packetNum;
 /*! Timeout for every packet, base on millisecond */
 @property(assign, nonatomic)  int64_t  perTimeout;
 /*! Interval for every packet, base on millisecond */
@@ -196,14 +220,18 @@ static const int kCyclicTaskMode = -1;
 @interface PoincaresTaskDescMtr : PoincaresTaskDescBase
 /*! Packe size for mtr task. 64 bytes is recommended */
 @property(assign, nonatomic)  uint32_t packetSize;
-/*! Packet num for one round mtr task. The statics is related to the packet nums. */
-@property(assign, nonatomic)  uint32_t packetNum;
+/*! Packet count for one round mtr task.
+ *  Every packet ends for one intermediate result, and the final result is a statistic data
+ *  based on all packets' result.
+ */
+@property(assign, nonatomic)  uint32_t packetCount;
 /*! Timeout for every packet, base on millisecond */
 @property(assign, nonatomic)  int64_t  perTimeout;
-/*! Interval for every packet, base on millisecond */
+/*! Interval for every packet, base on millisecond.
+ *  For Mtr, 200ms is suggested for the max perInterval to set.
+ */
 @property(assign, nonatomic)  int64_t  perInterval;
 @end
-
 
 
 
