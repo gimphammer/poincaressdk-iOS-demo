@@ -18,6 +18,7 @@
 NSString* gAppKey   =@"to apply on www.poincares.com";
 NSString* gAppSecret=@"to apply on www.poincares.com";
 
+
 NSString* gSchedulingServerUrl=@"https://account-dev.poincares.com/config/center/info";
 
 NSString* gAppName = @"PoincarsSDKDemo_iOS";
@@ -65,14 +66,17 @@ NSString* gLogPrefix=@"[PoincaresSdkDemo]";
 - (instancetype) init {
   self = [super init];
   
-  self.pingRecord = [[DemoTaskRecord alloc] initWithID : 100
-                                           withVersion : 100];
-  self.httpRecord = [[DemoTaskRecord alloc] initWithID : 300
-                                           withVersion : 300];
-  self.tcpPingRecord = [[DemoTaskRecord alloc] initWithID : 500
-                                              withVersion : 500];
-  self.mtrRecord  = [[DemoTaskRecord alloc] initWithID : 700
-                                           withVersion : 700];
+  self.pingRecord = [[DemoTaskRecord alloc] initWithID : 1
+                                           withVersion : 1];
+  
+  self.httpRecord = [[DemoTaskRecord alloc] initWithID : 1000
+                                           withVersion : 1];
+  
+  self.tcpPingRecord = [[DemoTaskRecord alloc] initWithID : 2000
+                                              withVersion : 1];
+  
+  self.mtrRecord  = [[DemoTaskRecord alloc] initWithID : 3000
+                                           withVersion : 1];
   
   
   PoincaresAppTag* appTag = [[PoincaresAppTag alloc] init];
@@ -165,24 +169,88 @@ NSString* gLogPrefix=@"[PoincaresSdkDemo]";
 
 - (DemoError)addTask : (NSString* )host
             taskType : (PoincaresTaskType) type
-           taskCount : (int) taskCount
+           taskCount : (int) taskRounds
 {
   if (nil == self.session)
     return DErrorAddTask;
   
-  PoincaresTaskDescBase* taskDesc;
+  PoincaresTaskDescBase* taskDesc = nil;
   switch (type) {
     case TTPing:
       {
+        int pktCnt = 10;
+        int pktInterval = 1000;
+        int jobInterval = pktInterval * pktCnt + 1000 * 60;
+        
         taskDesc = [PoincaresTaskDescBase createPingTaskWithId:_pingRecord.taskID++
                                                        version:_pingRecord.taskVersion++
                                                           host:host
-                                                      interval:10000
-                                                        rounds:taskCount //5//kCyclicTaskMode
+                                                      interval:jobInterval
+                                                        rounds:taskRounds //5//kCyclicTaskMode
                                                     packetSize:64
-                                                   packetCount:10
+                                                   packetCount:pktCnt
                                                     perTimeOut:1000
-                                                   perInterval:1000];
+                                                   perInterval:pktInterval];
+      }
+      break;
+    case TTHttp:
+      {
+        int jobInterval = 1000 * 60;
+        
+                
+        NSString* linkUrl = host;
+        //link should have the whole URL with protocol
+        if (![host hasPrefix:@"https://"] || ![host hasPrefix:@"http://"]) {
+          linkUrl = [[NSString alloc] initWithFormat:@"%s%@", "https://", host];
+        }
+        
+        
+        taskDesc = [PoincaresTaskDescBase createHttpTaskWithId:_httpRecord.taskID++
+                                                       version:_httpRecord.taskVersion++
+                                                          host:host
+                                                      interval:jobInterval
+                                                        rounds:taskRounds
+                                                          link:linkUrl
+                                                          port:80
+                                                  protoVersion:2 /*it's not used now, reserved*/
+                                                       timeout:1000*10];
+        
+      }
+      break;
+    case TTTcpPing:
+      {
+        int perTimeout = 1000 * 2;
+        int perInterval= 1000 * 2;
+        int connectCnt = 10;
+        
+        int jobInterval = perInterval * connectCnt + 1000 * 60;
+        taskDesc = [PoincaresTaskDescBase createTcpPingTaskWithId:_tcpPingRecord.taskID++
+                                                          version:_tcpPingRecord.taskVersion++
+                                                             host:host
+                                                         interval:jobInterval
+                                                           rounds:taskRounds
+                                                             port:80
+                                                     connectCount:connectCnt
+                                                       perTimeout:perTimeout
+                                                      perInterval:perInterval];
+      }
+      break;
+    case TTMtr:
+      {
+        int packetCnt   = 10;
+        int perTimeout  = 100;
+        int perInterval = 1000;
+        int jobInterval = perInterval*packetCnt + 1000 * 60;
+        
+        taskDesc = [PoincaresTaskDescBase createMtrTaskWithId:_mtrRecord.taskID++
+                                                      version:_mtrRecord.taskVersion++
+                                                         host:host
+                                                     interval:jobInterval
+                                                       rounds:taskRounds
+                                                   packetSize:64
+                                                  packetCount:packetCnt
+                                                   perTimeout:perTimeout
+                                                  perInterval:perInterval];
       }
       break;
     default:
